@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>陈桢裕 · 个人简历</title>
+  <style>
+    /* ----- 全局重置 & 变量 ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #1a3a5c;
+      --primary-light: #2a5a8a;
+      --accent: #e6b85e;
+      --bg: #0a1a2e;
+      --card-bg: #12263a;
+      --text: #e8edf2;
+      --text-muted: #a5b7c9;
+      --border: #2a4a6a;
+      --shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      --radius: 20px;
+      --transition: 0.2s ease;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+      --max-width: 1080px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #050e1a;
+      --card-bg: #0a1a2e;
+      --text: #e8edf2;
+      --text-muted: #8a9db0;
+      --border: #1a3a5a;
+      --shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.6;
+      padding: 0 1.2rem 2rem;
+      transition: background 0.2s, color 0.2s;
+      min-height: 100vh;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ----- 容器 ----- */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding-top: 80px;
+    }
+
+    /* ----- 固定导航 ----- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.6rem 1.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+      transition: background 0.2s, border 0.2s;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+
+    .navbar .brand {
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.5px;
+      color: var(--text);
+    }
+    .navbar .brand span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      transition: color 0.2s;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 2px;
+    }
+    .nav-links a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+    }
+    .nav-actions button {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+      color: var(--text);
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--card-bg);
+    }
+    .nav-actions button:hover {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #0a1a2e;
+    }
+
+    /* ----- Hero (含头像) ----- */
+    .hero {
+      background: linear-gradient(145deg, var(--card-bg), var(--bg));
+      padding: 2.2rem 2rem;
+      border-radius: var(--radius);
+      margin-bottom: 2.2rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: 0.2s;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .hero-content {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .hero-avatar {
+      flex-shrink: 0;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--accent);
+      box-shadow: 0 8px 24px rgba(230, 184, 94, 0.25);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: var(--border);
+    }
+
+    .hero-avatar:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 32px rgba(230, 184, 94, 0.35);
+    }
+
+    .hero-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.3rem;
+      color: var(--text);
+    }
+    .hero h1 small {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-left: 12px;
+    }
+    .hero .sub {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.2rem;
+      margin: 0.8rem 0 1.2rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    .hero .sub i {
+      font-style: normal;
+      background: var(--accent);
+      color: #0a1a2e;
+      border-radius: 40px;
+      padding: 0.1rem 0.8rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .hero .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0 1.2rem;
+    }
+    .hero .tags .badge {
+      background: var(--border);
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .hero .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent);
+      color: #0a1a2e;
+      border: none;
+      padding: 0.5rem 1.6rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-top: 0.2rem;
+    }
+    .hero .contact-btn:hover {
+      background: #f0c86a;
+      transform: scale(1.02);
+    }
+
+    /* ----- 亮点卡片 ----- */
+    .highlights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 2.2rem;
+    }
+    .highlights .card {
+      background: var(--card-bg);
+      padding: 1.2rem 1.2rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .highlights .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+    }
+    .highlights .card .num {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+    .highlights .card .label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ----- 通用卡片 & Tabs ----- */
+    .section {
+      margin-bottom: 2.8rem;
+    }
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+    }
+    .section-title:after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: var(--border);
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.4rem;
+    }
+    .tabs button {
+      background: transparent;
+      border: none;
+      padding: 0.4rem 1.2rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      border-radius: 40px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .tabs button[aria-selected="true"] {
+      background: var(--accent);
+      color: #0a1a2e;
+    }
+    .tabs button:hover:not([aria-selected="true"]) {
+      background: var(--border);
+      color: var(--text);
+    }
+
+    .tab-panel {
+      display: none;
+      animation: fadeUp 0.25s ease;
+    }
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 0.4; transform: translateY(8px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .exp-item, .project-item {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: 0.2s;
+    }
+    .exp-item:hover, .project-item:hover {
+      border-color: var(--accent);
+    }
+    .exp-item .header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 0.4rem;
+    }
+    .exp-item .title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+    .exp-item .org {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .exp-item .date {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    .exp-item ul {
+      padding-left: 1.2rem;
+      margin-top: 0.4rem;
+      color: var(--text-muted);
+    }
+    .exp-item ul li {
+      margin-bottom: 0.2rem;
+    }
+
+    .project-item .tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.6rem 0 0.4rem;
+    }
+    .project-item .tech span {
+      background: var(--border);
+      padding: 0.1rem 0.7rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* 技能矩阵 */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.8rem 1.2rem;
+      background: var(--card-bg);
+      padding: 1.4rem 1.6rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .skill-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .skill-item .name {
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .skill-item .bar {
+      width: 100%;
+      height: 6px;
+      background: var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .skill-item .bar .fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 20px;
+      width: 0%;
+    }
+
+    /* 教育 */
+    .edu-item {
+      background: var(--card-bg);
+      padding: 1.2rem 1.6rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      color: var(--text);
+    }
+
+    /* 页脚 */
+    .footer {
+      margin-top: 3rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* 返回顶部 */
+    .back-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--accent);
+      color: #0a1a2e;
+      border: none;
+      border-radius: 60px;
+      padding: 0.5rem 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: 0.2s;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .back-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .back-top:hover {
+      background: #f0c86a;
+      transform: scale(1.02);
+    }
+
+    /* ----- 打印样式 ----- */
+    @media print {
+      .navbar, .back-top, .nav-actions { display: none !important; }
+      body { padding: 0.5in; background: white; color: black; }
+      .container { padding-top: 10px; }
+      .hero, .exp-item, .project-item, .edu-item, .skills-grid, .highlights .card {
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+        break-inside: avoid;
+        background: #f5f7fa !important;
+      }
+      .hero { background: #f5f7fa !important; }
+      .tabs button { border: 1px solid #aaa; }
+      .hero h1, .section-title, .exp-item .title { color: #1a3a5c !important; }
+      .hero .tags .badge { background: #e0e0e0 !important; }
+      .hero-avatar { border: 2px solid #1a3a5c !important; }
+      [data-theme="dark"] body { background: white; color: black; }
+      [data-theme="dark"] .card, [data-theme="dark"] .exp-item { background: #f9f9f9 !important; border-color: #aaa !important; }
+      .highlights .card .num { color: #1a3a5c !important; }
+    }
+
+    @media (max-width: 640px) {
+      .navbar { flex-direction: column; align-items: stretch; gap: 6px; padding: 0.6rem 1rem; }
+      .nav-links { justify-content: center; }
+      .hero { flex-direction: column; align-items: center; text-align: center; }
+      .hero h1 { font-size: 1.8rem; }
+      .hero .sub { justify-content: center; }
+      .hero .tags { justify-content: center; }
+      .hero-avatar { width: 100px; height: 100px; }
+      .highlights { grid-template-columns: 1fr 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" role="navigation" aria-label="主导航">
+    <div class="brand">陈<span>桢裕</span></div>
+    <div class="nav-links">
+      <a href="#hero">首页</a>
+      <a href="#highlights">亮点</a>
+      <a href="#exp">经历</a>
+      <a href="#projects">项目</a>
+      <a href="#skills">技能</a>
+      <a href="#edu">教育</a>
+    </div>
+    <div class="nav-actions">
+      <button id="themeToggle" aria-label="切换深色模式">🌓</button>
+      <button id="printBtn" aria-label="打印简历">🖨️</button>
+    </div>
+  </nav>
+
+  <div class="container" id="app"></div>
+
+  <button class="back-top" id="backTop" aria-label="返回顶部">↑ 顶部</button>
+
+  <script>
+    (function() {
+      // ----- 简历数据 -----
+      const resume = {
+        name: '陈桢裕',
+        phone: '13348455209',
+        email: 'a13348455209@qq.com',
+        headline: '数学与应用数学 · 高考589（数学127）',
+        summary: '扎实的数学建模与算法逻辑能力，多次获得国家级虚拟机器人竞赛一等奖。拥有200+小时线下教学经验，善于将复杂理论转化为可落地的解决方案。',
+        tags: ['数学建模', 'Python', '逻辑分析', '团队协作', '教学沟通'],
+        highlights: [
+          { value: '589', label: '高考总分（数学127）' },
+          { value: '200h+', label: '线下教学经验' },
+          { value: '一等奖', label: '虚拟机器人挑战赛（多次）' },
+          { value: '35%', label: '课程续报率提升' }
+        ],
+        experiences: {
+          '教学实践': [
+            {
+              title: '线下数学讲师',
+              org: '自主教学 · 初高中',
+              date: '累计200+小时',
+              details: [
+                '分层设计教学方案，学员阶段性测评平均提分12分，2名学员在区域竞赛中获奖。',
+                '每节课嵌入3~5个生活化案例，课程满意度4.8/5.0，续报率提升35%。',
+                '针对薄弱知识点研发专项练习模块，帮助学生解题速度平均提升25%。'
+              ]
+            }
+          ],
+          '竞赛与项目': [
+            {
+              title: '虚拟机器人挑战赛 · 一等奖',
+              org: '国家级赛事（多次获奖）',
+              date: '2024 – 2025',
+              details: [
+                '主导算法策略设计，优化路径规划逻辑，任务完成效率提升20%。',
+                '负责代码调试与仿真测试，解决30+项异常问题，赛前准备周期缩短15%。',
+                '基于数学建模重构决策树模型，团队以总分前5%斩获一等奖。'
+              ]
+            }
+          ]
+        },
+        projects: [
+          {
+            name: '智能路径规划仿真系统',
+            tech: ['Python', '数学建模', '仿真测试'],
+            desc: '设计并实现多地形虚拟机器人路径规划算法，通过动态权重调整使通过率提升18%。',
+            link: '#'
+          },
+          {
+            name: '学情分析看板 (教学辅助)',
+            tech: ['Excel', '统计建模', '可视化'],
+            desc: '基于学员错题数据搭建分析模型，定位知识薄弱点，辅助教学决策。',
+            link: '#'
+          }
+        ],
+        skills: [
+          { name: 'Python / 算法', level: 80 },
+          { name: '数学建模与优化', level: 85 },
+          { name: '数据分析 (Excel/统计)', level: 75 },
+          { name: '逻辑推理与问题求解', level: 90 },
+          { name: '教学表达与沟通', level: 85 }
+        ],
+        education: {
+          school: '数学与应用数学 本科',
+          major: '数学与应用数学',
+          detail: '高考589分（数学127分），扎实的数学基础与建模能力。'
+        }
+      };
+
+      // ----- 渲染引擎 -----
+      const app = document.getElementById('app');
+
+      // 创建元素工具
+      function el(tag, cls = '', content = '') {
+        const e = document.createElement(tag);
+        if (cls) e.className = cls;
+        if (content) e.innerHTML = content;
+        return e;
+      }
+
+      function render() {
+        const frag = document.createDocumentFragment();
+
+        // ---- Hero (含头像) ----
+        const hero = el('section', 'hero', '');
+        hero.id = 'hero';
+
+        // 头像
+        const avatarDiv = el('div', 'hero-avatar', '');
+        const img = document.createElement('img');
+        img.src = 'loge.jpg';
+        img.alt = '陈桢裕 头像';
+        img.loading = 'lazy';
+        avatarDiv.appendChild(img);
+
+        // 内容
+        const contentDiv = el('div', 'hero-content', '');
+        contentDiv.innerHTML = `
+          <h1>${resume.name} <small>${resume.headline}</small></h1>
+          <div class="sub">
+            <span>📞 ${resume.phone}</span>
+            <span id="emailDisplay">✉️ ${resume.email}</span>
+            <span><i>🏅</i> 多次虚拟机器人一等奖</span>
+          </div>
+          <p style="max-width:600px;color:var(--text-muted);">${resume.summary}</p>
+          <div class="tags">${resume.tags.map(t => `<span class="badge">#${t}</span>`).join('')}</div>
+          <button class="contact-btn" id="copyEmailBtn">📋 复制邮箱</button>
+        `;
+
+        hero.appendChild(avatarDiv);
+        hero.appendChild(contentDiv);
+        frag.appendChild(hero);
+
+        // ---- Highlights ----
+        const hlSection = el('section', 'section', '');
+        hlSection.id = 'highlights';
+        const hlTitle = el('h2', 'section-title', '✨ 亮点成果');
+        hlSection.appendChild(hlTitle);
+        const hlGrid = el('div', 'highlights', '');
+        resume.highlights.forEach(h => {
+          const card = el('div', 'card', `<div class="num">${h.value}</div><div class="label">${h.label}</div>`);
+          hlGrid.appendChild(card);
+        });
+        hlSection.appendChild(hlGrid);
+        frag.appendChild(hlSection);
+
+        // ---- 经历 Tabs ----
+        const expSection = el('section', 'section', '');
+        expSection.id = 'exp';
+        const expTitle = el('h2', 'section-title', '💼 经历');
+        expSection.appendChild(expTitle);
+
+        const tabNames = Object.keys(resume.experiences);
+        const tabContainer = el('div', 'tabs', '');
+        tabContainer.setAttribute('role', 'tablist');
+        const panels = {};
+
+        tabNames.forEach((key, idx) => {
+          const btn = el('button', '', key);
+          btn.setAttribute('role', 'tab');
+          btn.setAttribute('aria-selected', idx === 0 ? 'true' : 'false');
+          btn.setAttribute('aria-controls', `panel-${idx}`);
+          btn.dataset.tab = idx;
+          tabContainer.appendChild(btn);
+        });
+        expSection.appendChild(tabContainer);
+
+        const panelWrapper = el('div', '');
+        tabNames.forEach((key, idx) => {
+          const panel = el('div', 'tab-panel', '');
+          panel.id = `panel-${idx}`;
+          panel.setAttribute('role', 'tabpanel');
+          if (idx === 0) panel.classList.add('active');
+
+          const items = resume.experiences[key];
+          items.forEach(exp => {
+            const item = el('div', 'exp-item', '');
+            item.innerHTML = `
+              <div class="header">
+                <span class="title">${exp.title}</span>
+                <span class="org">${exp.org}</span>
+                <span class="date">${exp.date}</span>
+              </div>
+              <ul>${exp.details.map(d => `<li>${d}</li>`).join('')}</ul>
+            `;
+            panel.appendChild(item);
+          });
+          panelWrapper.appendChild(panel);
+          panels[idx] = panel;
+        });
+        expSection.appendChild(panelWrapper);
+        frag.appendChild(expSection);
+
+        // Tabs 切换逻辑
+        tabContainer.addEventListener('click', (e) => {
+          const btn = e.target.closest('button');
+          if (!btn || !btn.dataset.tab) return;
+          const idx = parseInt(btn.dataset.tab);
+          // 更新按钮状态
+          Array.from(tabContainer.children).forEach((b, i) => {
+            b.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+          });
+          // 更新面板
+          Object.keys(panels).forEach(k => {
+            panels[k].classList.toggle('active', parseInt(k) === idx);
+          });
+        });
+
+        // ---- 项目 ----
+        const projSection = el('section', 'section', '');
+        projSection.id = 'projects';
+        const projTitle = el('h2', 'section-title', '📁 项目');
+        projSection.appendChild(projTitle);
+        resume.projects.forEach(p => {
+          const item = el('div', 'project-item', '');
+          item.innerHTML = `
+            <div style="font-weight:700;font-size:1.1rem;color:var(--text);">${p.name}</div>
+            <div class="tech">${p.tech.map(t => `<span>${t}</span>`).join('')}</div>
+            <p style="color:var(--text-muted);margin:0.4rem 0 0.2rem;">${p.desc}</p>
+            <a href="${p.link}" style="font-size:0.85rem;color:var(--accent);">🔗 查看详情 →</a>
+          `;
+          projSection.appendChild(item);
+        });
+        frag.appendChild(projSection);
+
+        // ---- 技能 ----
+        const skillSection = el('section', 'section', '');
+        skillSection.id = 'skills';
+        const skillTitle = el('h2', 'section-title', '🧰 技能矩阵');
+        skillSection.appendChild(skillTitle);
+        const grid = el('div', 'skills-grid', '');
+        resume.skills.forEach(s => {
+          const item = el('div', 'skill-item', '');
+          item.innerHTML = `
+            <span class="name">${s.name}</span>
+            <div class="bar"><div class="fill" style="width:${s.level}%;"></div></div>
+          `;
+          grid.appendChild(item);
+        });
+        skillSection.appendChild(grid);
+        frag.appendChild(skillSection);
+
+        // ---- 教育 ----
+        const eduSection = el('section', 'section', '');
+        eduSection.id = 'edu';
+        const eduTitle = el('h2', 'section-title', '🎓 教育');
+        eduSection.appendChild(eduTitle);
+        const eduItem = el('div', 'edu-item', '');
+        eduItem.innerHTML = `
+          <div><strong>${resume.education.school}</strong><br>${resume.education.major}</div>
+          <div style="color:var(--text-muted);">${resume.education.detail}</div>
+        `;
+        eduSection.appendChild(eduItem);
+        frag.appendChild(eduSection);
+
+        // ---- Footer ----
+        const footer = el('footer', 'footer', `© ${new Date().getFullYear()} 陈桢裕 · 最后更新 ${new Date().toLocaleDateString('zh-CN')}`);
+        frag.appendChild(footer);
+
+        app.appendChild(frag);
+
+        // ----- 交互: 复制邮箱 (防爬) -----
+        document.getElementById('copyEmailBtn')?.addEventListener('click', () => {
+          const email = resume.email;
+          navigator.clipboard?.writeText(email).then(() => {
+            alert('📧 邮箱已复制: ' + email);
+          }).catch(() => {
+            // fallback
+            const ta = document.createElement('textarea');
+            ta.value = email;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            ta.remove();
+            alert('📧 邮箱已复制');
+          });
+        });
+
+        // 返回顶部
+        const backBtn = document.getElementById('backTop');
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 400) backBtn.classList.add('visible');
+          else backBtn.classList.remove('visible');
+        });
+        backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // 打印
+        document.getElementById('printBtn').addEventListener('click', () => window.print());
+
+        // 深浅色
+        const themeBtn = document.getElementById('themeToggle');
+        const stored = localStorage.getItem('theme');
+        if (stored === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+        themeBtn.addEventListener('click', () => {
+          const current = document.documentElement.getAttribute('data-theme');
+          const next = current === 'dark' ? '' : 'dark';
+          document.documentElement.setAttribute('data-theme', next);
+          localStorage.setItem('theme', next);
+        });
+
+        // 导航锚点平滑 (已由 scroll-behavior 支持)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = document.querySelector(link.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+          });
+        });
+      }
+
+      render();
+    })();
+  </script>
+</body>
+</html>
